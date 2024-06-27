@@ -7,7 +7,7 @@ from sc2.ids.buff_id import BuffId
 from sc2.ids.unit_typeid import UnitTypeId
 from sc2.ids.upgrade_id import UpgradeId
 
-mineral_ids: Set[int] = {
+MINERAL_IDS: Set[int] = {
     UnitTypeId.RICHMINERALFIELD.value,
     UnitTypeId.RICHMINERALFIELD750.value,
     UnitTypeId.MINERALFIELD.value,
@@ -24,7 +24,7 @@ mineral_ids: Set[int] = {
     UnitTypeId.MINERALFIELDOPAQUE.value,
     UnitTypeId.MINERALFIELDOPAQUE900.value,
 }
-geyser_ids: Set[int] = {
+GEYSER_IDS: Set[int] = {
     UnitTypeId.VESPENEGEYSER.value,
     UnitTypeId.SPACEPLATFORMGEYSER.value,
     UnitTypeId.RICHVESPENEGEYSER.value,
@@ -32,7 +32,7 @@ geyser_ids: Set[int] = {
     UnitTypeId.PURIFIERVESPENEGEYSER.value,
     UnitTypeId.SHAKURASVESPENEGEYSER.value,
 }
-transforming: Dict[UnitTypeId, AbilityId] = {
+TRANSFORMING: Dict[UnitTypeId, AbilityId] = {
     # Terran structures
     UnitTypeId.BARRACKS: AbilityId.LAND_BARRACKS,
     UnitTypeId.BARRACKSFLYING: AbilityId.LAND_BARRACKS,
@@ -99,7 +99,7 @@ transforming: Dict[UnitTypeId, AbilityId] = {
     UnitTypeId.ZERGLINGBURROWED: AbilityId.BURROWDOWN_ZERGLING,
 }
 # For now only contains units that cost supply, used in bot_ai.do()
-abilityid_to_unittypeid: Dict[AbilityId, UnitTypeId] = {
+ABILITYID_TO_UNITTYPEID: Dict[AbilityId, UnitTypeId] = {
     # Protoss
     AbilityId.NEXUSTRAIN_PROBE: UnitTypeId.PROBE,
     AbilityId.GATEWAYTRAIN_ZEALOT: UnitTypeId.ZEALOT,
@@ -333,12 +333,12 @@ COMBINEABLE_ABILITIES: Set[AbilityId] = {
     AbilityId.EFFECT_BLINK,
     AbilityId.MORPH_ARCHON,
 }
-FakeEffectRadii: Dict[int, float] = {
+FAKE_EFFECT_RADII: Dict[int, float] = {
     UnitTypeId.KD8CHARGE.value: 2,
     UnitTypeId.PARASITICBOMBDUMMY.value: 3,
     UnitTypeId.FORCEFIELD.value: 1.5,
 }
-FakeEffectID: Dict[int, str] = {
+FAKE_EFFECT_ID: Dict[int, str] = {
     UnitTypeId.KD8CHARGE.value: "KD8CHARGE",
     UnitTypeId.PARASITICBOMBDUMMY.value: "PARASITICBOMB",
     UnitTypeId.FORCEFIELD.value: "FORCEFIELD",
@@ -371,6 +371,7 @@ def return_NOTAUNIT() -> UnitTypeId:
 TERRAN_TECH_REQUIREMENT: Dict[UnitTypeId, UnitTypeId] = defaultdict(
     return_NOTAUNIT,
     {
+        UnitTypeId.SUPPLYDEPOT: UnitTypeId.COMMANDCENTER,
         UnitTypeId.MISSILETURRET: UnitTypeId.ENGINEERINGBAY,
         UnitTypeId.SENSORTOWER: UnitTypeId.ENGINEERINGBAY,
         UnitTypeId.PLANETARYFORTRESS: UnitTypeId.ENGINEERINGBAY,

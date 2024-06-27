@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING, Dict, List, Optional, Set, Tuple, Union
 
 from loguru import logger
 
+# from bot.debug import Debug
 from sc2.bot_ai_internal import BotAIInternal
 from sc2.cache import property_cache_once_per_frame
 from sc2.constants import (
@@ -40,6 +41,10 @@ class BotAI(BotAIInternal):
     """Base class for bots."""
 
     EXPANSION_GAP_THRESHOLD = 15
+
+    # @property
+    # def debug(self) -> Debug:
+    #     return self.debug
 
     @property
     def time(self) -> float:

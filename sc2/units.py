@@ -5,7 +5,7 @@ import random
 import warnings
 from functools import cached_property
 from itertools import chain
-from typing import TYPE_CHECKING, Any, Dict, Generator, Iterable, List, Optional, Set, Tuple, Union
+from typing import TYPE_CHECKING, Any, Callable, Dict, Generator, Iterable, List, Optional, Set, Tuple, Union
 
 import numpy as np
 
@@ -428,7 +428,7 @@ class Units(list):
         :param units:"""
         return Units(units, self._bot_object)
 
-    def filter(self, pred: callable) -> Units:
+    def filter(self, pred: Callable[[Unit],bool]) -> Units:
         """
         Filters the current Units object and returns a new Units object.
 

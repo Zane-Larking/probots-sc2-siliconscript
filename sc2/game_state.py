@@ -7,7 +7,7 @@ from typing import List, Optional, Set, Union
 
 from loguru import logger
 
-from sc2.constants import IS_ENEMY, IS_MINE, FakeEffectID, FakeEffectRadii
+from sc2.constants import IS_ENEMY, IS_MINE, FAKE_EFFECT_ID, FAKE_EFFECT_RADII
 from sc2.data import Alliance, DisplayType
 from sc2.ids.ability_id import AbilityId
 from sc2.ids.effect_id import EffectId
@@ -105,7 +105,7 @@ class EffectData:
     def id(self) -> Union[EffectId, str]:
         if self.fake:
             # Returns the string from constants.py, e.g. "KD8CHARGE"
-            return FakeEffectID[self._proto.unit_type]
+            return FAKE_EFFECT_ID[self._proto.unit_type]
         return EffectId(self._proto.effect_id)
 
     @property
@@ -135,7 +135,7 @@ class EffectData:
     @property
     def radius(self) -> float:
         if self.fake:
-            return FakeEffectRadii[self._proto.unit_type]
+            return FAKE_EFFECT_RADII[self._proto.unit_type]
         return self._proto.radius
 
     def __repr__(self) -> str:

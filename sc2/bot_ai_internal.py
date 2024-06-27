@@ -19,10 +19,10 @@ from sc2.constants import (
     ALL_GAS,
     IS_PLACEHOLDER,
     TERRAN_STRUCTURES_REQUIRE_SCV,
-    FakeEffectID,
-    abilityid_to_unittypeid,
-    geyser_ids,
-    mineral_ids,
+    FAKE_EFFECT_ID,
+    ABILITYID_TO_UNITTYPEID,
+    GEYSER_IDS,
+    MINERAL_IDS,
 )
 from sc2.data import ActionResult, Race, race_townhalls
 from sc2.game_data import AbilityData, Cost, GameData
@@ -221,7 +221,7 @@ class BotAIInternal(ABC):
                 if self.game_info.placement_grid[point.rounded] == 1
                 # Check if all resources have enough space to point
                 and all(
-                    point.distance_to(resource) >= (7 if resource._proto.unit_type in geyser_ids else 6)
+                    point.distance_to(resource) >= (7 if resource._proto.unit_type in GEYSER_IDS else 6)
                     for resource in resources
                 )
             )
@@ -360,8 +360,8 @@ class BotAIInternal(ABC):
                 return False
             self.minerals -= cost.minerals
             self.vespene -= cost.vespene
-        if subtract_supply and action.ability in abilityid_to_unittypeid:
-            unit_type = abilityid_to_unittypeid[action.ability]
+        if subtract_supply and action.ability in ABILITYID_TO_UNITTYPEID:
+            unit_type = ABILITYID_TO_UNITTYPEID[action.ability]
             required_supply = self.calculate_supply_cost(unit_type)
             # Overlord has -8
             if required_supply > 0:
@@ -546,7 +546,7 @@ class BotAIInternal(ABC):
             else:
                 unit_type: int = unit.unit_type
                 # Convert these units to effects: reaper grenade, parasitic bomb dummy, forcefield
-                if unit_type in FakeEffectID:
+                if unit_type in FAKE_EFFECT_ID:
                     self.state.effects.add(EffectData(unit, fake=True))
                     continue
                 unit_obj = Unit(unit, self, distance_calculation_index=index, base_build=self.base_build)
@@ -562,11 +562,11 @@ class BotAIInternal(ABC):
                     if unit_type == 149:
                         self.watchtowers.append(unit_obj)
                     # mineral field enums
-                    elif unit_type in mineral_ids:
+                    elif unit_type in MINERAL_IDS:
                         self.mineral_field.append(unit_obj)
                         self.resources.append(unit_obj)
                     # geyser enums
-                    elif unit_type in geyser_ids:
+                    elif unit_type in GEYSER_IDS:
                         self.vespene_geyser.append(unit_obj)
                         self.resources.append(unit_obj)
                     # all destructable rocks

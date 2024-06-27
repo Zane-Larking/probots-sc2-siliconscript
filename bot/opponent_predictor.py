@@ -4,7 +4,7 @@
 from sc2.game_data import Cost
 from sc2.units import Units
 from sc2.bot_ai import BotAI
-from typeHelper import filter_economy_units, filter_military_units , filter_static_defence
+from bot.typeHelper import filter_economy_units, filter_military_units , filter_static_defence
 
 # import enum
 
@@ -17,7 +17,7 @@ class OpponentPredictor():
 
     def __init__(self, bot_object: BotAI):
         self._bot_object: BotAI = bot_object
-        self.opponents_units: Units = Units()
+        self.opponents_units: Units = Units([], bot_object)
         self.opponents_upgrades = set()
 
     def update_manifest(self, units: Units):
@@ -27,7 +27,7 @@ class OpponentPredictor():
         """
         add to list of upgrades
         """
-        self.opponents_upgrades 
+        # self.opponents_upgrades 
 
     def appraise(self, units: Units):
         """

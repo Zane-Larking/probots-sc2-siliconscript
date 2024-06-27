@@ -48,7 +48,7 @@ from sc2.constants import (
     UNIT_COLOSSUS,
     UNIT_ORACLE,
     UNIT_PHOTONCANNON,
-    transforming,
+    TRANSFORMING,
 )
 from sc2.data import Alliance, Attribute, CloakState, Race, Target, race_gas, warpgate_abilities
 from sc2.ids.ability_id import AbilityId
@@ -1072,7 +1072,7 @@ class Unit:
     def is_transforming(self) -> bool:
         """Checks if the unit transforming.
         Only works for own units."""
-        return self.type_id in transforming and self.is_using_ability(transforming[self.type_id])
+        return self.type_id in TRANSFORMING and self.is_using_ability(TRANSFORMING[self.type_id])
 
     @cached_property
     def is_repairing(self) -> bool:
